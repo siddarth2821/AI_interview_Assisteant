@@ -30,13 +30,16 @@ role = st.selectbox(
         "HR Executive",
     ],
 )
-diff = st.selectbox("Select Difficulty level", [
-    "Beginner",
-    "Advannce",
-    "Pro"
-  ])
+diff = st.selectbox(
+    "Select Difficulty Level",
+    ["Beginner", "Advanced", "Pro"],
+)
+
 if st.button("Generate Interview Questions"):
-    prompt = f"Generate 5 interview questions for the role of " + role + "with" + diff + "difficulty" )
+    prompt = (
+        f"Generate 5 interview questions for the role of {role} "
+        f"at the {diff} difficulty level."
+    )
 
     response = client.chat.completions.create(
         model="openai/gpt-oss-120b",
@@ -51,4 +54,6 @@ if st.button("Generate Interview Questions"):
 
     output = response.choices[0].message.content
     st.write(output)
+
+   
   
